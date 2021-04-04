@@ -1,0 +1,13 @@
+Version Log
+
+v1.0  -  Prototype
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v2.0  -   Working program with basic functionalities such as self introduction, fetching date and time information.
+
+v2.1  -  Added security features such as a login. LISA can now play the user's favourite music with Play/Pause functionality.
+
+v2.2  -  Added an age meter. Now user's current location can be obtained.
+
+v2.3  -  Added a Wikipedia Search feature.
