@@ -1,5 +1,5 @@
 # LISA
-LISA, abbreviated as Logically Interactive Software Algorithm is a rudimental voice assistant. She was built using Python 3 and is constantly being updated with new functionalities. Feel free to report any bugs or errors via email: mohnish_official@icloud.com
+Logically Interactive Software Algorithm, abbreviated as LISA, is a rudimental virtual voice assistant. She was built using Python 3 and is constantly being updated with new functionalities. Feel free to test and report any bugs or errors via email: mohnish_official@icloud.com
 
 P.S: It is with full consiousness that I've decided not to license this software.
 
