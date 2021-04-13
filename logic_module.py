@@ -66,6 +66,8 @@ def menu() :
 								>	Get you the current date or time
 
 								>	Do a Wikipedia search !
+
+								>	Recommend some movies
 							
 				\n\n\n			
 				
@@ -245,11 +247,11 @@ def today_time() :
 
 def greetx() :
 
-	from random import randint as ran
+	from random import randint
 	clean_slate()
 	g = ['Hello !','Hi !','Hola !','Hey there !','Well hello there !','Hey !']
-	op = random.choices(g)
-	speak(op)
+	op = randint(0,5)
+	speak(g[op])
 
 
 def personal_mode() :
@@ -345,4 +347,180 @@ def location() :
 	state = geo_json['region_name']
 	city = geo_json['city']
 	speak('You\'re currently in : '+city+' , '+state+' , '+country)
+
+
+
+def movie_prediction():
+
+	# Importing required libraries and reading the dataset. 
+
+
+    import pandas as pd
+    import numpy as np
+    from sklearn.metrics.pairwise import cosine_similarity
+    from sklearn.feature_extraction.text import CountVectorizer
+    from pickle import load,dump
+    from os import system
+    df = pd.read_csv('Datasets/movies_data.csv')
+    clean_slate()
+    # Function to create a string of important features for each movie.
+
+    def get_imp_features(data) :
+        important_features = []
+        for i in range(0,data.shape[0]): 
+            important_features.append(data['Title'][i]+' '+data['Certificate'][i]+' '+data['Genre'][i]+' '+data['Director'][i]+' '+data['Star1'][i]+' '+data['Star2'][i])
+
+        return important_features
+
+    # Getting the title from the user.
+    speak('Enter the most recent movie you watched: ')
+    title = input(align+'Movie:  '.rjust(60))
+
+    # Function to find a similar title to the one user has entered.
+
+    def alt_title(df,title):
+
+        cm1 = CountVectorizer().fit_transform([title]+list(df['Title']))
+        cs1 = cosine_similarity(cm1)
+        scores = list(enumerate(cs1[0]))
+        sorted_scores = sorted(scores,key = lambda x : x[1], reverse = True)
+        sorted_scores = sorted_scores[1:]
+        t = df['Title'][sorted_scores[0][0]-1]
+        return t
+
+    # Vectorizing all the important features and creating a cosine-similarity matrix.
+
+    df['imp_features'] = get_imp_features(df)
+    cm = CountVectorizer().fit_transform(list(df['imp_features']))
+    cs = cosine_similarity(cm)
+
+    # Findig the movie id of the title the user entered.
+
+    f= 0
+    try:
+        mov_id = df[df.Title == title]['movie_id'].values[0]
+    except:
+        f=1
+        title = alt_title(df,title)
+        mov_id = df[df.Title == title]['movie_id'].values[0]
+
+    # Creating a list, where each element is a tuple having the index and similarity score as its elements, and sorting it.
+
+    scores = list(enumerate(cs[mov_id]))
+    sorted_scores = sorted(scores,key = lambda x : x[1], reverse = True)
+    if f == 0:
+        sorted_scores = sorted_scores[1:]
+
+
+    # Printing the the most recommended movies.
+
+    m = 0
+    clean_slate()
+    speak('The 7 most recommended movies are: ')
+    print('\n'*10)
+    for item in sorted_scores:
+        movie_title = df[df.movie_id == item[0]]['Title'].values[0]
+        sleep(0.5)
+        print('\n',str(m+1).rjust(55),movie_title)
+        m += 1
+        if m > 6:
+            break
+    if f == 1:
+        speak('Due to insufficient data, these results might not be 100 percent accurate.')
+
+    sleep(5)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def doomsday_protocol():
+
+	from misc_methods import getPass,file_load,align,User
+	import os,time,shutil
+	from colorama import init,Fore
+	
+	atv = True
+	attempts = 3
+
+	speak('Activating this protocol will erase me permanently from your computer. To confirm, please enter your password.')
+	
+	while atv:
+
+		if attempts == 0:
+			speak('Sorry you are out of attempts. PROTOCOL activation failed.')
+			return False
+		else:
+			speak('You have '+str(attempts)+' attempts left.')
+		clean_slate()
+		print(align+'Password -->   '.rjust(70),end='')
+		password = getPass()
+		boss = User()
+		boss = file_load(boss,'User_data.pkl')
+
+		if password == boss.password :
+			
+			clean_slate()
+			speak('Activating DOOMSDAY PROTOCOL in:')
+
+			speak('3')
+			time.sleep(0.1)
+			speak('2')
+			time.sleep(0.1)
+			speak('1')
+			time.sleep(1)
+			print(align+Fore.RED+'DOOMSDAY PROTOCOL ACTIVATED'.rjust(80))
+			speak('Goodbye '+boss.f_name)
+			time.sleep(2)
+			os.startfile('C:/Users/mohni/Documents/Personal/Projects/LISA/GOODBYE.txt')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/LISA.py')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/logic_module.py')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/misc_methods.py')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/speech_to_text.py')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/text_to_speech.py')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/Version_Log.txt')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/User_count.pkl')
+			os.unlink('C:/Users/mohni/Documents/Personal/Projects/LISA/User_data.pkl')
+			shutil.rmtree('C:/Users/mohni/Documents/Personal/Projects/LISA/Songs')
+			shutil.rmtree('C:/Users/mohni/Documents/Personal/Projects/LISA/LISA_ResponseCache')
+			shutil.rmtree('C:/Users/mohni/Documents/Personal/Projects/LISA/__pycache__')
+			shutil.rmtree('C:/Users/mohni/Documents/Personal/Projects/LISA/Tones')
+			atv = False
+			return True
+
+		else :
+			
+			speak('Wrong password! Wanna try again ?')
+			ans = choice('Try again ?')
+			
+			if ans in 'yes yeah ye yup yep ok k alright':
+				attempts -= 1
+				continue
+			
+			else:
+				return False
+
 

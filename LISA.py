@@ -14,7 +14,7 @@
 
 #############################################################################################################################################################
 
-version = 2.3
+version = 3.0
 
 import time 
 import os
@@ -29,10 +29,10 @@ from misc_methods import User
 from colorama import init,Fore,Style
 from misc_methods import check
 
-access = False
+access = True
 log = True
 
-gbl = ['OK! See you later then. BYE ! ','Alright then ! Talk to you later !','So long....','See you later...']
+gbl = ['OK! See you later then. BYE ! ','Alright then ! Talk to you later !','So long....','See you later...','Bye','Goodbye','Until next time..']
 
 init()
 
@@ -44,14 +44,16 @@ playsound.playsound('Tones/Intro.mp3',block=False)
 
 time.sleep(2.9)
 
+intro()
+
 for i in range(25):
 
 	intro()
-	time.sleep(0.001)
+	time.sleep(0.003)
 	clean_slate()
-	time.sleep(0.001)
+	time.sleep(0.003)
 clean_slate()
-time.sleep(0.2)
+time.sleep(0.3)
 intro()
 time.sleep(1.4)
 print('\b'+str(version),end=' ')
@@ -125,8 +127,7 @@ if access == True and log == True :
 
 	active = True
 	clean_slate()
-	time.sleep(3)
-	print('\n'*15+':)'.center(132))
+	print('\n'*15+Fore.YELLOW+':)'.center(132))
 	l.greet()
 	
 	clean_slate()
@@ -146,7 +147,8 @@ if access == True and log == True :
 
 		if check(['bye','goodbye','talk to you later','later','good night','shutdown'],cmd) :
 
-			speak(random.choices(gbl))
+			n = random.randint(0,6)
+			speak(gbl[n])
 			active = False
 			access = False
 
@@ -204,8 +206,23 @@ if access == True and log == True :
 
 			l.wiki_search()
 
+		elif check(['movies','bored','suggest some movies','suggest','what to watch','recommend'],cmd):
+
+			l.movie_prediction()
 
 
+		elif check(['activate doomsday protocol','doomsday','protocol'],cmd) :
+
+			status = l.doomsday_protocol()
+
+			if status :
+				
+				exit()
+
+			else :
+
+				active = False
+				access = False
 
 
 
@@ -223,9 +240,9 @@ if access == True and log == True :
 
 
 
-
 else :
-	speak(random.choices(gbl))
+	n = random.randint(0,6)
+	speak(gbl[n])
 
 clean_slate()
 

@@ -1,0 +1,22 @@
+Version Log
+Current Version: 3.0
+Last Update: 13th April 2021
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v1.0  -  Prototype
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v2.0  -   Working program with basic functionalities such as self introduction, fetching date and time information.
+
+v2.1  -  Added security features such as a login. LISA can now play the user's favourite music with Play/Pause functionality.
+
+v2.2  -  Added an age meter. Now user's current location can be obtained.
+
+v2.3  -  LISA can perform a Wikipedia Search. 
+             (Sometimes due to bad Voice Recognition or any internet issue, the results might not be 100% accurate)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+v3.0 -  LISA can now recommend you movies to watch. 
+           Also an emergency software deletion protocol has been implemented (The Doomsday Protocol). Warning: Use only when necessary.	

@@ -9,7 +9,7 @@ def Voice_out(txt,sl=False,bk=True) :
 	import random
 
 	op = gTTS(text=txt,lang='en',tld='us',slow=sl)
-	file_name = 'LISA Response Cache/LISA_response'+str(random.randint(0,100))+'.mp3'
+	file_name = 'LISA_ResponseCache/LISA_response'+str(random.randint(0,100))+'.mp3'
 	op.save(file_name)
 
 	playsound.playsound(file_name,block=bk)
@@ -17,4 +17,4 @@ def Voice_out(txt,sl=False,bk=True) :
 	os.unlink(file_name)
 
 
-Voice_out("Hey There ! Im LISA")
+#Voice_out("Hey There ! Im LISA")

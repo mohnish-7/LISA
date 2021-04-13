@@ -127,7 +127,7 @@ def signup() :
 def login() :
 
 	clean_slate()
-	speak('You need to log in access LISA ! ')
+	speak('You need to log-in to proceed. ')
 	
 	while True :
 
@@ -174,11 +174,9 @@ def login() :
 
 					print(align+'Loging in...'.center(130))
 					time.sleep(3)
-					speak('Uh oh ! Wrong Password.')
+					speak('Uh.oh ! Wrong credentials.')
 					clean_slate()
-					print(align+' Try Again ? '.center(125))
-					a = input('\n'.center(120))
-
+					a = choice('Try Again ? ')
 					if a in 'yes okay ok yea yup':
 						continue
 					else:
@@ -201,9 +199,11 @@ def login() :
 def intro() :
 
 	import misc_methods as mm 
-	import time
+	import time,random
 	mm.clean_slate()
-	print('\n'*5+Fore.YELLOW+'''                                                                    
+	color = [Fore.YELLOW, Fore.BLUE, Fore.RED, Fore.GREEN, Fore.CYAN, Fore.WHITE]
+	c = color[random.randint(0,5)]
+	print('\n'*5+c+'''                                                                    
 
 			                                                                                            
 		                                                                                                       		 											                                                                                                      
