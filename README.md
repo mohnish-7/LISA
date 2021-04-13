@@ -10,5 +10,6 @@ Copyright © 2021, Mohnish
     * Download all the files and save it in a single folder.
     * Open your Command Prompt and run LISA.py
     * Have fun !
+    * If you face any problem while downloading the files or running them, please send an email to the above email address.
     
   
