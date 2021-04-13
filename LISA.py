@@ -206,7 +206,7 @@ if access == True and log == True :
 
 			l.wiki_search()
 
-		elif check(['movies','bored','suggest some movies','suggest','what to watch','recommend'],cmd):
+		elif check(['movies','movie','bored','suggest some movies','suggest','what to watch','recommend'],cmd):
 
 			l.movie_prediction()
 
