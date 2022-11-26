@@ -4,10 +4,7 @@ Logically Interactive Software Algorithm, abbreviated as LISA, is a rudimental V
 
 Please keep in mind that this project is a very basic attempt at making a Voice Assistant cum Chatbot. Feel free to contact me via email (mohnish_official@icloud.com) to report any bugs or errors. I hope to improve and add more functionalities to LISA overtime.
 
-
-P.S: It is with full consiousness that I've decided NOT to license this software.
-
-Copyright © 2021, Mohnish
+Copyright © 2022, Mohnish
 
 
 # Instructions (For Personal use alone)
