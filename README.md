@@ -1,4 +1,4 @@
-# LISA
+# Logically Interactive Software Algorithm
 
 Logically Interactive Software Algorithm, abbreviated as LISA, is a rudimental Virtual Voice Assistant. She was built purely using Python 3. She uses Google's Speech to Text API to recognize the user's voice command. To seem somewhat on par with today's modern Voice Assistants like Siri or Alexa, she uses Google's Text to Speech (gTTS) API to turn her responses into an actual voice. She can introduce herself vis-à-vis her name, age and creation. She can fetch the current date, time and location of the user. She can play some of the user's selected songs and also do a Wikipedia Search.( Take a look at Version_Log.txt to know more).
 
